@@ -1,49 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace DTTUnityCommon.DataStructs
 {
 
-    [Serializable]
-    public abstract class DataNodeBase : MonoBehaviour, IMetaDataNode<DataNodeBase>
+    [System.Serializable]
+    public class DataNodeBase : MonoBehaviour, IMetaDataNode<DataNodeBase, IMetaData>
     {
         [SerializeField] private string _id;
         [SerializeField] private DataNodeBase _header;
         [SerializeField] private DataNodeBase _parent;
         [SerializeField] private List<DataNodeBase> _childList = new List<DataNodeBase>();
-        //[SerializeReference] private IMetaData _metaData;
 
-        [SerializeField, RequireInterface(typeof(IMetaData))]
-        private UnityEngine.Object _metaData;
-
-        public virtual void AddChild(DataNodeBase newDataNode, IMetaData metaData)
+        [SerializeReference, Atributes.RequireInterface(typeof(IMetaData))]
+        private IMetaData _metaData;
+       
+        public virtual void AddChild(string newChildName, IMetaData metaData)
         {
-            newDataNode.Header = _header;
-            newDataNode.Parent = this;
-            _childList.Add(newDataNode);
+            DataNodeBase dataNode = (new GameObject()).AddComponent<DataNode>();
+            dataNode.name= newChildName;
 
-            newDataNode.SetMetaData(metaData);
+            dataNode.Header = _header;
+            dataNode.Parent = this;
+            _childList.Add(dataNode);
+
+            dataNode.Data = metaData;
+        }
+       
+        public virtual void RemoveChild()
+        {
+            if(_childList.Count > 0 ) 
+            {
+                Utilities.SafeDestroy(_childList[^1].gameObject);
+                _childList.RemoveAt(_childList.Count - 1);
+            }
         }
 
-        public virtual void SetMetaData(IMetaData metaData)
-        {
-            _metaData = (UnityEngine.Object)metaData;
-        }
-
-        #region IDataEntityNode<GameObject> Implementation
+        #region IMetaDataNode<DataNodeBase, IMetaData> Implementation
 
         public string Id
         {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                _id = value;
-            }
+            get => _id;
+            private set => _id = value;
         }
 
         public DataNodeBase Header { get => _header; set => _header = value; }
@@ -59,7 +57,7 @@ namespace DTTUnityCommon.DataStructs
         [SerializeField]
         public List<DataNodeBase> Childs { get => _childList; set => _childList = value; }
 
-        public IMetaData Data { get => (IMetaData)_metaData; set => _metaData = (UnityEngine.Object)value; }
+        public IMetaData Data { get => _metaData; set => _metaData = value; }
 
         public void AddComponent<ComponentType>() where ComponentType : Component
         {
@@ -134,24 +132,6 @@ namespace DTTUnityCommon.DataStructs
         }
 
         #endregion
-    }
-
-    [Serializable]
-    public class MetaData : IMetaData
-    {
-        [SerializeField] private string _id;
-
-        public MetaData()
-        {
-            _id = Guid.NewGuid().ToString();
-        }
-
-        public MetaData(string id)
-        {
-            _id = id;
-        }
-
-        public string Id { get => _id;  }
     }
 }
 

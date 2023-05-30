@@ -4,15 +4,27 @@ using UnityEngine;
 namespace DTTUnityCommon.DataStructs
 {
 
-    public interface IMetaDataNode<T> : IMetaDataNodeBase
+    public interface IMetaDataNode<NodeType, MetaDataType> : IMetaDataNodeBase where MetaDataType : IMetaData
     {
-        T Header { get; set; }
+        NodeType Header { get; set; }
 
-        T Parent { get; set; }
+        NodeType Parent { get; set; }
 
-        List<T> Childs { get; set; }
+        List<NodeType> Childs { get; set; }
 
-        IMetaData Data { get; set; }
+        MetaDataType Data { get; set; }
+
+        /// <summary>
+        /// Add a new node child
+        /// </summary>
+        /// <param name="newDataNode">New child name</param>
+        /// <param name="metaData">Meta data fro the new data</param>
+        void AddChild(string newChildName, MetaDataType metaData);
+
+        /// <summary>
+        /// Remove the last child
+        /// </summary>
+        void RemoveChild();
 
         void AddComponent<ComponentType>() where ComponentType : Component;
 
@@ -21,9 +33,9 @@ namespace DTTUnityCommon.DataStructs
         void RemoveComponent<ComponentType>() where ComponentType : Component;
     }
 
-    public interface IMetaDataHeader<T> : IMetaDataNode<T>
+    public interface IMetaDataHeader<T,M> : IMetaDataNode<T,M> where M : IMetaData
     {
-        public IMetaData HeaderData { get; set; }
+        IMetaData HeaderData { get; set; }
     }
 }
 

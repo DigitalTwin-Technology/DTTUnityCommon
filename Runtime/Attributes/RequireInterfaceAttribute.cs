@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
-namespace DTTUnityCommon.DataStructs
+namespace DTTUnityCommon.Atributes
 {
+    /// <summary>
+    /// Specify a required interface type for the field
     /// </summary>
-    public class RequireInterfaceAttribute : PropertyAttribute
+    public sealed class RequireInterfaceAttribute : PropertyAttribute
     {
         // Interface type.
         public System.Type requiredType { get; private set; }
@@ -13,7 +15,7 @@ namespace DTTUnityCommon.DataStructs
         /// <param name="type">Interface type.</param>
         public RequireInterfaceAttribute(System.Type type)
         {
-            this.requiredType = type;
+            requiredType = type;
         }
     }
 }
