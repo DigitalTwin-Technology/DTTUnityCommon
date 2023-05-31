@@ -5,7 +5,7 @@ namespace DTTUnityCommon.DataStructs
 {
 
     [System.Serializable]
-    public class DataNodeBase : MonoBehaviour, IMetaDataNode<DataNodeBase, IMetaData>
+    public abstract class DataNodeBase : MonoBehaviour, IMetaDataNode<DataNodeBase, IMetaData>
     {
         [SerializeField] private string _id;
         [SerializeField] private DataNodeBase _header;
@@ -14,27 +14,8 @@ namespace DTTUnityCommon.DataStructs
 
         [SerializeReference, Atributes.RequireInterface(typeof(IMetaData))]
         private IMetaData _metaData;
-       
-        public virtual void AddChild(string newChildName, IMetaData metaData)
-        {
-            DataNodeBase dataNode = (new GameObject()).AddComponent<DataNode>();
-            dataNode.name= newChildName;
 
-            dataNode.Header = _header;
-            dataNode.Parent = this;
-            _childList.Add(dataNode);
-
-            dataNode.Data = metaData;
-        }
-       
-        public virtual void RemoveChild()
-        {
-            if(_childList.Count > 0 ) 
-            {
-                Utilities.SafeDestroy(_childList[^1].gameObject);
-                _childList.RemoveAt(_childList.Count - 1);
-            }
-        }
+      
 
         #region IMetaDataNode<DataNodeBase, IMetaData> Implementation
 
@@ -58,6 +39,31 @@ namespace DTTUnityCommon.DataStructs
         public List<DataNodeBase> Childs { get => _childList; set => _childList = value; }
 
         public IMetaData Data { get => _metaData; set => _metaData = value; }
+
+        public void AddChild(IMetaDataNode<DataNodeBase, IMetaData> newChild)
+        {
+            newChild.Header = _header;
+            newChild.Parent = this;
+            _childList.Add((DataNodeBase)newChild);
+        }
+
+        public virtual void AddChild(string newChildName, IMetaData metaData)
+        {
+            DataNodeBase newDataNode = (new GameObject()).AddComponent<DataNode>();
+            newDataNode.name = newChildName;
+            newDataNode.Data = metaData;
+
+            AddChild(newDataNode);
+        }
+
+        public virtual void RemoveChild()
+        {
+            if (_childList.Count > 0)
+            {
+                Utilities.SafeDestroy(_childList[^1].gameObject);
+                _childList.RemoveAt(_childList.Count - 1);
+            }
+        }
 
         public void AddComponent<ComponentType>() where ComponentType : Component
         {
