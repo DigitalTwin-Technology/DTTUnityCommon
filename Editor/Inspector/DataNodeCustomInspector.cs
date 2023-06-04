@@ -10,6 +10,9 @@ public class DataNodeCustomInspector : Editor
 
     SerializedProperty Childs_Propierty;
 
+    string _value;
+    int _number;
+
     private void OnEnable()
     {
         _target = (DataNode)target;
@@ -19,17 +22,45 @@ public class DataNodeCustomInspector : Editor
 
     public override void OnInspectorGUI()
     {
-        if (GUILayout.Button("Random Data"))
+        serializedObject.Update();
+
+        _value = EditorGUILayout.TextField(new GUIContent("ID"),_value);
+        _number = EditorGUILayout.IntField(new GUIContent("Number"), _number);
+
+        if (GUILayout.Button("Set ID"))
         {
-            _target.SetMetaData(new MetaData());
+            _target.Data = new MetaDataBase(_value);
+            EditorUtility.SetDirty(_target);
         }
 
-        //if (((MetaData)_target.Data) != null)
-        //if (_target.Data != null)
-        //{
-        //    //GUILayout.Box("DATA: " + ((MetaData)_target.Data).Id);
-        //    GUILayout.Box("DATA: " + _target.Data.Id);
+        if (GUILayout.Button("Set Number"))
+        {
+            _target.Data = new MetaDataNumber(_value, _number);
 
+            //if(_target.Data.GetType() == typeof(MetaDataNumber))
+            //{
+            //    Debug.Log("MetaData");
+            //}
+
+            EditorUtility.SetDirty(_target);
+        }
+
+        if (GUILayout.Button("Random Data"))
+        {
+            _target.Data = new MetaDataBase();
+            EditorUtility.SetDirty(_target);
+            //Childs_MetaData.serializedObject.ApplyModifiedProperties();
+        }
+        
+        if (_target.Data != null)
+        {
+            //GUILayout.Box("DATA: " + ((MetaData)_target.Data).Id);
+            GUILayout.Box("DATA: " + _target.Data.Id);
+        }
+
+        //if (Childs_MetaData != null)
+        //{
+        //    EditorGUILayout.PropertyField(Childs_MetaData);
         //}
 
         EditorGUILayout.Space();
@@ -44,10 +75,17 @@ public class DataNodeCustomInspector : Editor
 
         if(GUILayout.Button("Add Child"))
         {
-            GameObject gameObject = new GameObject();
-            DataNodeBase dataNode = gameObject.AddComponent<DataNode>();
-
-            _target.AddChild(dataNode, new MetaData());
+            _target.AddChild("New Data Node", new MetaDataBase());
         }
+
+        if(_target.Childs.Count > 0)
+        {
+            if (GUILayout.Button("Delete Child"))
+            {
+                _target.RemoveChild();
+            }
+        }
+
+        serializedObject.ApplyModifiedProperties();
     }
 }
