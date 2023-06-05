@@ -1,7 +1,8 @@
 
-using DTTUnityCommon.DataStructs;
 using UnityEditor;
 using UnityEngine;
+using DTTUnityCommon.DataStructs;
+using DTTUnityCommon.Functional;
 
 [CustomEditor(typeof(DataNode))]
 public class DataNodeCustomInspector : Editor
@@ -66,7 +67,6 @@ public class DataNodeCustomInspector : Editor
         EditorGUILayout.Space();
 
         EditorGUILayout.ObjectField("Header", _target.Header, typeof(DataNode), true);
-        EditorGUILayout.ObjectField("Parent", _target.Parent, typeof(DataNode), true);
 
         if(Childs_Propierty != null ) 
         {
@@ -75,10 +75,15 @@ public class DataNodeCustomInspector : Editor
 
         if(GUILayout.Button("Add Child"))
         {
-            _target.AddChild("New Data Node", new MetaDataBase());
+            _target.AddNode("New Data Node", new MetaDataBase(), Option<DataNodeBase>.None);
         }
 
-        if(_target.Childs.Count > 0)
+        if (GUILayout.Button("Build Child"))
+        {
+            _target.AddNode(new DataNodeBuilderEmpty("ALFA"), new MetaDataBase(), Option<DataNodeBase>.None);
+        }
+
+        if (_target.Childs.Count > 0)
         {
             if (GUILayout.Button("Delete Child"))
             {

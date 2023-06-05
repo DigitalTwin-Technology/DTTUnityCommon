@@ -1,14 +1,13 @@
-using Mono.Cecil;
+
 using System.Collections.Generic;
 using UnityEngine;
+using DTTUnityCommon.Functional;
 
 namespace DTTUnityCommon.DataStructs
 {
     public interface IMetaDataNode<NodeType, MetaDataType> : IMetaDataNodeBase where MetaDataType : IMetaData
     {
         NodeType Header { get; set; }
-
-        NodeType Parent { get; set; }
 
         List<NodeType> Childs { get; set; }
 
@@ -18,14 +17,21 @@ namespace DTTUnityCommon.DataStructs
         /// Add node child node
         /// </summary>
         /// <param name="newChild">New node to add</param>
-        void AddChild(IMetaDataNode<NodeType, MetaDataType> newChild);
+        void AddNode(IMetaDataNode<NodeType, MetaDataType> newChild);
 
         /// <summary>
         /// Add a new child node
         /// </summary>
         /// <param name="newDataNode">New child name</param>
         /// <param name="metaData">Meta data fro the new data</param>
-        void AddChild(string newChildName, MetaDataType metaData);
+        void AddNode(string newChildName, MetaDataType metaData, Option<NodeType> parent);
+
+        /// <summary>
+        /// Add a new child node
+        /// </summary>
+        /// <param name="newDataNode">New child name</param>
+        /// <param name="metaData">Meta data fro the new data</param>
+        void AddNode(IDataNodeCreator nodeCreator, IMetaData metaData, Option<DataNodeBase> parent);
 
         /// <summary>
         /// Remove the last child

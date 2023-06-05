@@ -1,21 +1,23 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) 2023  DigitalTwin Technology GmbH
+// https://www.digitaltwin.technology/
+
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using DTTUnityCommon.Functional;
 
 namespace DTTUnityCommon.DataStructs
 {
 
-    [System.Serializable]
+    [Serializable]
     public abstract class DataNodeBase : MonoBehaviour, IMetaDataNode<DataNodeBase, IMetaData>
     {
         [SerializeField] private string _id;
         [SerializeField] private DataNodeBase _header;
-        [SerializeField] private DataNodeBase _parent;
-        [SerializeField] private List<DataNodeBase> _childList = new List<DataNodeBase>();
+        [SerializeField] private List<DataNodeBase> _nodeList = new List<DataNodeBase>();
 
         [SerializeReference, Atributes.RequireInterface(typeof(IMetaData))]
         private IMetaData _metaData;
-
-      
 
         #region IMetaDataNode<DataNodeBase, IMetaData> Implementation
 
@@ -27,41 +29,45 @@ namespace DTTUnityCommon.DataStructs
 
         public DataNodeBase Header { get => _header; set => _header = value; }
 
-        public DataNodeBase Parent { get => _parent; 
-            set 
-            {
-                _parent = value;
-                transform.parent = _parent.transform;
-            } 
-        }
-
         [SerializeField]
-        public List<DataNodeBase> Childs { get => _childList; set => _childList = value; }
+        public List<DataNodeBase> Childs { get => _nodeList; set => _nodeList = value; }
 
         public IMetaData Data { get => _metaData; set => _metaData = value; }
 
-        public void AddChild(IMetaDataNode<DataNodeBase, IMetaData> newChild)
+        public void AddNode(IMetaDataNode<DataNodeBase, IMetaData> newChild)
         {
-            newChild.Header = _header;
-            newChild.Parent = this;
-            _childList.Add((DataNodeBase)newChild);
+            _nodeList.Add((DataNodeBase)newChild);
         }
 
-        public virtual void AddChild(string newChildName, IMetaData metaData)
+        public void AddNode(string newChildName, IMetaData metaData, Option<DataNodeBase> parent)
         {
             DataNodeBase newDataNode = (new GameObject()).AddComponent<DataNode>();
             newDataNode.name = newChildName;
             newDataNode.Data = metaData;
+            newDataNode.Header = _header;
 
-            AddChild(newDataNode);
+            newDataNode.transform.parent = parent.Match(some => some, () => this).transform;
+
+            AddNode(newDataNode);
+        }
+
+        public void AddNode(IDataNodeCreator nodeCreator, IMetaData metaData, Option<DataNodeBase> parent)
+        {
+            DataNodeBase newDataNode = (DataNodeBase)nodeCreator.Create(this, metaData);
+            newDataNode.Data = metaData;
+            newDataNode.Header = _header;
+
+            newDataNode.transform.parent = parent.Match(some => some, () => this).transform;
+
+            AddNode(newDataNode);
         }
 
         public virtual void RemoveChild()
         {
-            if (_childList.Count > 0)
+            if (_nodeList.Count > 0)
             {
-                Utilities.SafeDestroy(_childList[^1].gameObject);
-                _childList.RemoveAt(_childList.Count - 1);
+                Utilities.SafeDestroy(_nodeList[^1].gameObject);
+                _nodeList.RemoveAt(_nodeList.Count - 1);
             }
         }
 
@@ -131,7 +137,7 @@ namespace DTTUnityCommon.DataStructs
         {
             if (((object)person1) == null || ((object)person2) == null)
             {
-                return !System.Object.Equals(person1, person2);
+                return !Equals(person1, person2);
             }
 
             return !(person1.Equals(person2));
