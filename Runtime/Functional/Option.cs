@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2023  DigitalTwin Technology GmbH
 // https://www.digitaltwin.technology/
 
-using DTTUnityCommon.DataStructs;
+
 using System;
 using System.Diagnostics.CodeAnalysis;
 
@@ -41,11 +41,6 @@ namespace DTTUnityCommon.Functional
         public TOut Match<TOut>(Func<T, TOut> some, Func<TOut> none)
         {
             return _isSome ? some(_value) : none();
-        }
-
-        internal object Match(Func<DataNodeBase, DataNodeBase> value, DataNodeBase dataNodeBase)
-        {
-            throw new NotImplementedException();
         }
     }
 }

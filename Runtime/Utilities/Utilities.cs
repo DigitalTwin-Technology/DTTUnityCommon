@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// Copyright (c) 2023  DigitalTwin Technology GmbH
+// https://www.digitaltwin.technology/
+
+using UnityEngine;
 
 namespace DTTUnityCommon
 {
