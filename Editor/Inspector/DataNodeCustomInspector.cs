@@ -50,20 +50,13 @@ public class DataNodeCustomInspector : Editor
         {
             _target.Data = new MetaDataBase();
             EditorUtility.SetDirty(_target);
-            //Childs_MetaData.serializedObject.ApplyModifiedProperties();
         }
         
         if (_target.Data != null)
         {
-            //GUILayout.Box("DATA: " + ((MetaData)_target.Data).Id);
             GUILayout.Box("DATA: " + _target.Data.Id);
         }
-
-        //if (Childs_MetaData != null)
-        //{
-        //    EditorGUILayout.PropertyField(Childs_MetaData);
-        //}
-
+       
         EditorGUILayout.Space();
 
         EditorGUILayout.ObjectField("Header", _target.Header, typeof(DataNode), true);
@@ -80,7 +73,7 @@ public class DataNodeCustomInspector : Editor
 
         if (GUILayout.Button("Build Child"))
         {
-            _target.AddNode(new DataNodeBuilderEmpty("ALFA"), new MetaDataBase(), Option<DataNodeBase>.None);
+            _target.AddNode(new DataRandomMeshBuilder("Random Mesh", Color.red), Option<DataNodeBase>.None);
         }
 
         if (_target.Childs.Count > 0)

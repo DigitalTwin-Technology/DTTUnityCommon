@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace DTTUnityCommon
 {
-    public class Utilities
+    public static class Utilities
     {
         public static void SafeDestroy(GameObject gameObject)
         { 

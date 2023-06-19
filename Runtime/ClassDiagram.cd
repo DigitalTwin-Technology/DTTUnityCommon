@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DataNode">
+    <Position X="6" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Digital Twin Technology\Packages\DTTUnityCommon\Runtime\DataStructs\Implementation\DataNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DTTUnityCommon.DataStructs.DataNodeBase">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQACAAAAAAAIAMAAgABABAAAAAIAAJAEAAEAAAAIAiA=</HashCode>
+      <FileName>Assets\Digital Twin Technology\Packages\DTTUnityCommon\Runtime\DataStructs\Implementation\DataNodeBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DTTUnityCommon.DataStructs.DataNodeBuilderEmpty" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABIAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Digital Twin Technology\Packages\DTTUnityCommon\Runtime\DataStructs\Implementation\DataNodeBuilderEmpty.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DTTUnityCommon.DataStructs.DataMeshBuilder" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Digital Twin Technology\Packages\DTTUnityCommon\Runtime\DataStructs\Implementation\DataNodeBuilderEmpty.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DTTUnityCommon.DataStructs.DataRandomMeshBuilder" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Digital Twin Technology\Packages\DTTUnityCommon\Runtime\DataStructs\Implementation\DataNodeBuilderEmpty.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.122" />
+  </Class>
+  <Class Name="DTTUnityCommon.DataStructs.MetaDataBase">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Digital Twin Technology\Packages\DTTUnityCommon\Runtime\DataStructs\Implementation\MetaDataBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DTTUnityCommon.DataStructs.MetaDataName" Collapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Digital Twin Technology\Packages\DTTUnityCommon\Runtime\DataStructs\Implementation\MetaDataBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DTTUnityCommon.DataStructs.MetaDataPrimitiveMesh" Collapsed="true">
+    <Position X="0.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAABAAAAAAAAAAAAAgAAIAAA=</HashCode>
+      <FileName>Assets\Digital Twin Technology\Packages\DTTUnityCommon\Runtime\DataStructs\Implementation\MetaDataBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DTTUnityCommon.DataStructs.MetaDataNumber" Collapsed="true">
+    <Position X="2.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Digital Twin Technology\Packages\DTTUnityCommon\Runtime\DataStructs\Implementation\MetaDataBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DTTUnityCommon.DataStructs.IDataNodeCreator">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Digital Twin Technology\Packages\DTTUnityCommon\Runtime\DataStructs\Interfaces\IDataNodeCreator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DTTUnityCommon.DataStructs.IMetaData">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Digital Twin Technology\Packages\DTTUnityCommon\Runtime\DataStructs\Interfaces\IMetaData.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

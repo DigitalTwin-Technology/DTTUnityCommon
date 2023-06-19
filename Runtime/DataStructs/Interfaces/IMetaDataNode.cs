@@ -31,7 +31,7 @@ namespace DTTUnityCommon.DataStructs
         /// </summary>
         /// <param name="newDataNode">New child name</param>
         /// <param name="metaData">Meta data fro the new data</param>
-        void AddNode(IDataNodeCreator nodeCreator, IMetaData metaData, Option<DataNodeBase> parent);
+        void AddNode(IDataNodeCreator nodeCreator, Option<DataNodeBase> parent);
 
         /// <summary>
         /// Remove the last child

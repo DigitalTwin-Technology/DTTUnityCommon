@@ -5,6 +5,13 @@ namespace DTTUnityCommon.Profiler
 {
     public enum ProfilerStatType
     {
+        #region Custom
+        /// <summary>
+        /// Profile the main thead rate
+        /// </summary>
+        ProfilerMarker,
+        #endregion
+
         #region Internal
         /// <summary>
         /// Profile the main thead rate

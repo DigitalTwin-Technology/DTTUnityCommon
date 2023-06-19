@@ -15,6 +15,14 @@ namespace DTTUnityCommon.Profiler
         public string Name { get; private set; }
         public ProfilerStatType ProfilerStatType { get; private set; }
 
+        public ProfilerRecorderHelper(ProfilerMarker profilerMarker, string name, int capacity = 1, ProfilerRecorderOptions profilerRecorderOptions = ProfilerRecorderOptions.Default)
+        {
+            ProfilerStatType = ProfilerStatType.ProfilerMarker;
+            Name = name;
+
+            ProfilerRecorder = ProfilerRecorder.StartNew(profilerMarker, capacity, profilerRecorderOptions);
+        }
+
         public ProfilerRecorderHelper(ProfilerStatType profilerStatType, int capacity = 1)
         {
             ProfilerStatType = profilerStatType;
