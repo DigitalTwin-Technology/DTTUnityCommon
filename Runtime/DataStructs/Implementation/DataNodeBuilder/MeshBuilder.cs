@@ -6,12 +6,21 @@ namespace DTTUnityCommon.DataStructs
     {
         protected MetaDataPrimitiveMesh _metaDataPrimitiveMesh;
 
-        public MeshBuilder(string name, PrimitiveType primitiveType, Material material, bool AddMeshCollider = true)
+        public MeshBuilder(string name, PrimitiveType primitiveType, Vector3 position,
+        Quaternion rotation,
+        Vector3 scale, 
+        Material material, 
+        bool AddMeshCollider = true)
         {
             GuardsClauses.ArgumentStringNullOrEmpty(name, nameof(primitiveType));
             GuardsClauses.ArgumentNotNull(material, nameof(material));
 
-            _metaDataPrimitiveMesh = new MetaDataPrimitiveMesh(name, primitiveType, material, AddMeshCollider);
+            _metaDataPrimitiveMesh = new MetaDataPrimitiveMesh(name, primitiveType, 
+                position, 
+                rotation, 
+                scale, 
+                material, 
+                AddMeshCollider);
         }
 
         public IMetaData MetaData { get => _metaDataPrimitiveMesh; set => _metaDataPrimitiveMesh = (MetaDataPrimitiveMesh)value; }
@@ -24,7 +33,11 @@ namespace DTTUnityCommon.DataStructs
             newDataNode.name = _metaDataPrimitiveMesh.Name;
             newDataNode.GetComponent<MeshRenderer>().sharedMaterial = _metaDataPrimitiveMesh.material;
 
-            if(!_metaDataPrimitiveMesh.AddMeshCollider)
+            newDataNode.transform.position = _metaDataPrimitiveMesh.Position;
+            newDataNode.transform.rotation = _metaDataPrimitiveMesh.Rotation;
+            newDataNode.transform.localScale = _metaDataPrimitiveMesh.Scale;
+
+            if (!_metaDataPrimitiveMesh.AddMeshCollider)
             {
                 Utilities.SafeDestroy(newDataNode.GetComponent<Collider>());
             }

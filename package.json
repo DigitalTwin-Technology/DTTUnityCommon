@@ -1,12 +1,15 @@
 {
   "name": "com.dtt.commond",
   "displayName": "DTT Unity Commond Code",
-  "version": "0.3.2",
+  "version": "0.4.2",
   "unity": "2021.3",
   "description": "DTT Unity Commond Code",
   "author": {
     "name": "Digital Twin Technology",
     "email": "https://www.digitaltwin.technology/",
     "url": "https://www.digitaltwin.technology/"
-  }
+  },
+  "dependencies": {
+    "com.unity.collections": "1.2.4",
+ }
 }
