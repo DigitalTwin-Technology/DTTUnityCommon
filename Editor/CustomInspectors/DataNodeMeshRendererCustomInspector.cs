@@ -1,23 +1,20 @@
-
 using UnityEditor;
 using UnityEngine;
 using DTTUnityCommon.DataStructs;
-using DTTUnityCommon.Functional;
+
 
 [CustomEditor(typeof(DataNodeMeshRenderer))]
-public class DataNodeMeshRendererInspector : Editor
+public class DataNodeMeshRendererCustomInspector : Editor
 {
     DataNodeMeshRenderer _target;
 
     SerializedProperty Childs_Propierty;
-    //SerializedProperty ReferencedMaterial_Propierty;
 
     private void OnEnable()
     {
         _target = (DataNodeMeshRenderer)target;
 
         Childs_Propierty = serializedObject.FindProperty("_childList");
-        //ReferencedMaterial_Propierty = serializedObject.FindProperty("ReferencedMaterial");
     }
 
     public override void OnInspectorGUI()
@@ -26,11 +23,6 @@ public class DataNodeMeshRendererInspector : Editor
 
         DrawBaseData();
         EditorGUILayout.Space();
-
-        //if (ReferencedMaterial_Propierty != null)
-        //{
-        //    EditorGUILayout.PropertyField(ReferencedMaterial_Propierty);
-        //}
 
         if (_target.Data != null)
         {
@@ -48,7 +40,6 @@ public class DataNodeMeshRendererInspector : Editor
             GUILayout.Box("ID: " + ((MetaDataPrimitiveMesh)_target.Data).Id, GUILayout.ExpandWidth(true));
         }
 
-        //EditorGUILayout.ObjectField("Header", _target.Header, typeof(DataNode), true);
         if (Childs_Propierty != null)
         {
             EditorGUILayout.PropertyField(Childs_Propierty);
@@ -58,7 +49,7 @@ public class DataNodeMeshRendererInspector : Editor
         {
             if (GUILayout.Button("Delete Childs"))
             {
-                _target.RemoveChild();
+                _target.RemoveNode();
             }
         }
     }

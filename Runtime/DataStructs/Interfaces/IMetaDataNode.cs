@@ -36,9 +36,14 @@ namespace DTTUnityCommon.DataStructs
         /// <summary>
         /// Remove the last child
         /// </summary>
-        void RemoveChild();
+        void RemoveNode();
 
-        void AddComponent<ComponentType>() where ComponentType : Component;
+        /// <summary>
+        /// Remove the last child
+        /// </summary>
+        void RemoveAllNodes();
+
+        ComponentType AddComponent<ComponentType>() where ComponentType : Component;
 
         ComponentType GetComponent<ComponentType>() where ComponentType : Component;
 

@@ -54,7 +54,6 @@ namespace DTTUnityCommon.DataStructs
         public void AddNode(IDataNodeBuilder nodeCreator, Option<DataNodeBase> parent)
         {
             DataNodeBase newDataNode = (DataNodeBase)nodeCreator.Create(this);
-            //newDataNode.Data = nodeCreator.MetaData;
             newDataNode.Header = _header;
 
             newDataNode.transform.parent = parent.Match(some => some, () => this).transform;
@@ -62,7 +61,7 @@ namespace DTTUnityCommon.DataStructs
             AddNode(newDataNode);
         }
 
-        public virtual void RemoveChild()
+        public virtual void RemoveNode()
         {
             if (_nodeList.Count > 0)
             {
@@ -71,9 +70,20 @@ namespace DTTUnityCommon.DataStructs
             }
         }
 
-        public void AddComponent<ComponentType>() where ComponentType : Component
+        public void RemoveAllNodes()
         {
-            gameObject.AddComponent<ComponentType>();
+            for (int i = _nodeList.Count - 1; i >= 0; i--)
+            {
+                Debug.Log(_nodeList[i].gameObject.name);
+                Utilities.SafeDestroy(_nodeList[i].gameObject);
+                _nodeList.RemoveAt(i);
+            }
+            _nodeList.Clear();
+        }
+
+        public ComponentType AddComponent<ComponentType>() where ComponentType : Component
+        {
+            return gameObject.AddComponent<ComponentType>();
         }
 
         new public ComponentType GetComponent<ComponentType>() where ComponentType : Component

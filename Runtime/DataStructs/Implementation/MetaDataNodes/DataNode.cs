@@ -1,10 +1,17 @@
 using UnityEngine;
 using DTTUnityCommon.DataStructs;
 using DTTUnityCommon.Functional;
+using static UnityEngine.GraphicsBuffer;
+using UnityEditor;
 
 public class DataNode : DataNodeBase
 {
     public Material ReferencedMaterial;
+
+    private void Reset()
+    {
+        Data = new MetaDataBase();
+    }
 
     public void AddCube()
     {
