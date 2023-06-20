@@ -1,6 +1,6 @@
 ﻿namespace DTTUnityCommon.DataStructs
 {
-    public interface IDataNodeCreator
+    public interface IDataNodeBuilder
     {
         IMetaData MetaData { get; set; }
 

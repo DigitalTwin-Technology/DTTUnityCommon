@@ -35,22 +35,6 @@ namespace DTTUnityCommon.DataStructs
     }
 
     [Serializable]
-    public class MetaDataPrimitiveMesh : MetaDataName
-    {
-        [SerializeField] private PrimitiveType _primitiveType;
-        [SerializeField] private Color _primitiveColor;
-
-        public MetaDataPrimitiveMesh(string name, PrimitiveType primitiveType, Color primitiveColor) : base(name)
-        {
-            _primitiveType = primitiveType;
-            _primitiveColor = primitiveColor;
-        }
-
-        public PrimitiveType PrimitiveType { get => _primitiveType; }
-        public Color Color { get => _primitiveColor; }
-    }
-
-    [Serializable]
     public class MetaDataNumber : MetaDataBase
     {
         [SerializeField]

@@ -51,7 +51,7 @@ namespace DTTUnityCommon.DataStructs
             AddNode(newDataNode);
         }
 
-        public void AddNode(IDataNodeCreator nodeCreator, Option<DataNodeBase> parent)
+        public void AddNode(IDataNodeBuilder nodeCreator, Option<DataNodeBase> parent)
         {
             DataNodeBase newDataNode = (DataNodeBase)nodeCreator.Create(this);
             //newDataNode.Data = nodeCreator.MetaData;
