@@ -23,7 +23,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="DTTUnityCommon.DataStructs.DataMeshBuilder" Collapsed="true" BaseTypeListCollapsed="true">
+  <Class Name="DTTUnityCommon.DataStructs.PrimitiveMeshBuilder" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="8.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
