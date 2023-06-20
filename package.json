@@ -10,6 +10,6 @@
     "url": "https://www.digitaltwin.technology/"
   },
   "dependencies": {
-    "com.unity.collections": "1.2.4",
+    "com.unity.collections": "1.2.4"
  }
 }
