@@ -131,25 +131,25 @@ namespace DTTUnityCommon.DataStructs
             return _id.GetHashCode();
         }
 
-        public static bool operator == (DataNodeBase person1, DataNodeBase person2)
+        public static bool operator == (DataNodeBase node1, DataNodeBase node2)
         {
-            if (((object)person1) == null || ((object)person2) == null)
+            if (((object)node1) == null || ((object)node2) == null)
             {
-                return System.Object.Equals(person1, person2);
+                return System.Object.Equals(node1, node2);
             }
 
 
-            return person1.Equals(person2);
+            return node1.Equals(node2);
         }
 
-        public static bool operator != (DataNodeBase person1, DataNodeBase person2)
+        public static bool operator != (DataNodeBase node1, DataNodeBase node2)
         {
-            if (((object)person1) == null || ((object)person2) == null)
+            if (((object)node1) == null || ((object)node2) == null)
             {
-                return !Equals(person1, person2);
+                return !Equals(node1, node2);
             }
 
-            return !(person1.Equals(person2));
+            return !(node1.Equals(node2));
         }
 
         #endregion
