@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// Copyright (c) 2023  DigitalTwin Technology GmbH
+// https://www.digitaltwin.technology/
+
+using UnityEngine;
 
 namespace DTTUnityCommon.DataStructs
 {
@@ -41,6 +44,8 @@ namespace DTTUnityCommon.DataStructs
             {
                 Utilities.SafeDestroy(newDataNode.GetComponent<Collider>());
             }
+
+            StaticBatchingUtility.Combine(((DataNodeBase)parent).Header.gameObject);
 
             return (IMetaDataNode<NodeType, MetaDataType>)newDataNode;
         }

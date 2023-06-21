@@ -1,12 +1,20 @@
+// Copyright (c) 2023  DigitalTwin Technology GmbH
+// https://www.digitaltwin.technology/
+
 using UnityEngine;
 using DTTUnityCommon.DataStructs;
 using DTTUnityCommon.Functional;
-using static UnityEngine.GraphicsBuffer;
-using UnityEditor;
+
 
 public class DataNode : DataNodeBase
 {
-    public Material ReferencedMaterial;
+    public Material ReferencedMaterial
+    {
+        get
+        {
+            return ((HeaderDataNode)Header).ReferencedMaterial;
+        }
+    }
 
     private void Reset()
     {
@@ -32,11 +40,5 @@ public class DataNode : DataNodeBase
             Option<DataNodeBase>.None);
     }
 
-    private void OnGUI()
-    {
-        if(GUILayout.Button("Add Cube"))
-        {
-            AddCube();
-        }
-    }
+    
 }

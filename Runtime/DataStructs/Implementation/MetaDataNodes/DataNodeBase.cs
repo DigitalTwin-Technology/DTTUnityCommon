@@ -74,7 +74,6 @@ namespace DTTUnityCommon.DataStructs
         {
             for (int i = _nodeList.Count - 1; i >= 0; i--)
             {
-                Debug.Log(_nodeList[i].gameObject.name);
                 Utilities.SafeDestroy(_nodeList[i].gameObject);
                 _nodeList.RemoveAt(i);
             }

@@ -1,4 +1,4 @@
-// Copyright (c) 2023  DigitalTwin Technology GmbH
+﻿// Copyright (c) 2023  DigitalTwin Technology GmbH
 // https://www.digitaltwin.technology/
 
 using UnityEditor;
@@ -6,18 +6,20 @@ using UnityEngine;
 using DTTUnityCommon.DataStructs;
 using DTTUnityCommon.Functional;
 
-[CustomEditor(typeof(DataNode))]
-public class DataNodeCustomInspector : Editor
+[CustomEditor(typeof(HeaderDataNode))]
+public class HeaderDataNodeCustomInspector : Editor
 {
-    DataNode _target;
+    HeaderDataNode _target;
 
     SerializedProperty Childs_Propierty;
+    SerializedProperty ReferencedMaterial_Propierty;
 
     private void OnEnable()
     {
-        _target = (DataNode)target;
+        _target = (HeaderDataNode)target;
 
         Childs_Propierty = serializedObject.FindProperty("_nodeList");
+        ReferencedMaterial_Propierty = serializedObject.FindProperty("ReferencedMaterial");
     }
 
     public override void OnInspectorGUI()
@@ -28,15 +30,24 @@ public class DataNodeCustomInspector : Editor
         {
             GUILayout.Box("ID: " + ((MetaDataBase)_target.Data).Id, GUILayout.ExpandWidth(true));
         }
+        if (ReferencedMaterial_Propierty != null)
+        {
+            EditorGUILayout.PropertyField(ReferencedMaterial_Propierty);
+        }
 
-        //if (_target.ReferencedMaterial != null)
-        //{
-        //    if (GUILayout.Button("Add Renderer Child"))
-        //    {
-        //        _target.AddCube();
-        //    }
-        //}
+        if (_target.ReferencedMaterial != null)
+        {
+            if (GUILayout.Button("Add Cube"))
+            {
+                _target.AddRandomCube();
+            }
+            if (GUILayout.Button("Add Sphere"))
+            {
+                _target.AddRandomSphere();
+            }
+        }
         EditorGUILayout.Space();
+
 
         EditorGUILayout.ObjectField("Header", _target.Header, typeof(DataNode), true);
         if (Childs_Propierty != null)
