@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using DTTUnityCommon.DataStructs;
 using DTTUnityCommon.Functional;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 [CustomEditor(typeof(HeaderDataNode))]
 public class HeaderDataNodeCustomInspector : Editor
@@ -37,13 +38,21 @@ public class HeaderDataNodeCustomInspector : Editor
 
         if (_target.ReferencedMaterial != null)
         {
+            if (GUILayout.Button("Use MaterialPropertyBlocks"))
+            {
+                _target.ActiveMaterialPropieryBlocks();
+            }
+            if (GUILayout.Button("Clear MaterialPropertyBlocks"))
+            {
+                _target.CleatPropieryBlocks();
+            }
             if (GUILayout.Button("Add Cube"))
             {
-                _target.AddRandomCube();
+                _target.AddRandomCube(100);
             }
             if (GUILayout.Button("Add Sphere"))
             {
-                _target.AddRandomSphere();
+                _target.AddRandomSphere(100);
             }
         }
         EditorGUILayout.Space();
