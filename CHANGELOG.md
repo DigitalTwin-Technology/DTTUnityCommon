@@ -6,3 +6,5 @@ Added DataRetrieval scripts. These scripts provide abstractions to read, parse a
 
 v 0.7.5
 Small Changes to the Base Table and Series data structures
+v 0.7.6
+Table quickfix
