@@ -20,10 +20,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 1.   Removed unused builders (DataNodeBuilderBasicNode and DataNodeBuilderEmpty) 
 
+## [0.7.5]
 
+### Changed
 
-## [Unreleased]
+Small Changes to the Base Table and Series data structures v 0.7.6 Table quickfix
+
 ## [0.0.3]
+### Changed
+
 Added DataRetrieval scripts. These scripts provide abstractions to read, parse, and process (to a limited extent) data from a variety of source files. The concrete data, parsing, and structuring in an output data format, depend on concrete implementations to be made when using the DataRetrieval namespace in the project.
 
 
