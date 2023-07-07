@@ -5,7 +5,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace DTTUnityCommon.Functional
+namespace DTTUnityCore.Functional
 {
     public readonly struct Option<T>
     {

@@ -2,8 +2,8 @@
 // https://www.digitaltwin.technology/
 
 using UnityEngine;
-using DTTUnityCommon.DataStructs;
-using DTTUnityCommon.Functional;
+using DTTUnityCore.DataStructs;
+using DTTUnityCore.Functional;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 

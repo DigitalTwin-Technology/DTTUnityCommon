@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace DTTUnityCommon
+namespace DTTUnityCore
 {
     public sealed class GuardsClauses
     {

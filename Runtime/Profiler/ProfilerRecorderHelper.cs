@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.Profiling;
 
-namespace DTTUnityCommon.Profiler
+namespace DTTUnityCore.Profiler
 {
     public sealed partial class ProfilerRecorderHelper : IDisposable
     {

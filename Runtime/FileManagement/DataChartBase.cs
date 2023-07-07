@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace DTTUnityCommon.DataRetrieval
+namespace DTTUnityCore.DataRetrieval
 {
     [Serializable]
     public class DataChartBase : IDataChart, IEquatable<DataChartBase>

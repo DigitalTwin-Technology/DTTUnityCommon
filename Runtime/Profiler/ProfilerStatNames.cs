@@ -3,7 +3,7 @@
 
 using Unity.Profiling;
 
-namespace DTTUnityCommon.Profiler
+namespace DTTUnityCore.Profiler
 {
     public sealed partial class ProfilerRecorderHelper
     {

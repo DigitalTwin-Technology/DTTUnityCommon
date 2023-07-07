@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace DTTUnityCommon.DataRetrieval
+namespace DTTUnityCore.DataRetrieval
 {
     public abstract class DataFileReader<T> : IFileManager, IDataParser<T>
     {

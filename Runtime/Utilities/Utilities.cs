@@ -3,7 +3,7 @@
 
 using UnityEngine;
 
-namespace DTTUnityCommon
+namespace DTTUnityCore
 {
     public static class Utilities
     {

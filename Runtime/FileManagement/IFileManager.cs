@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 
-namespace DTTUnityCommon.DataRetrieval
+namespace DTTUnityCore.DataRetrieval
 {
         public interface IFileManager
         {

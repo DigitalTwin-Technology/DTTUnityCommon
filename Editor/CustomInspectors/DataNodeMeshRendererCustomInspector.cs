@@ -1,6 +1,6 @@
 using UnityEditor;
 using UnityEngine;
-using DTTUnityCommon.DataStructs;
+using DTTUnityCore.DataStructs;
 
 
 [CustomEditor(typeof(DataNodeMeshRenderer))]

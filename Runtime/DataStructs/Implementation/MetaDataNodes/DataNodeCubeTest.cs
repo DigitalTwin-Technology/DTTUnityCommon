@@ -2,11 +2,18 @@
 // https://www.digitaltwin.technology/
 
 using UnityEngine;
-using DTTUnityCommon.DataStructs;
-using DTTUnityCommon.Functional;
-
+using DTTUnityCore.DataStructs;
+using DTTUnityCore.Functional;
 
 public class DataNode : DataNodeBase
+{
+    private void Reset()
+    {
+        Data = new MetaDataBase();
+    }
+}
+
+public class DataNodeCubeTest : DataNodeBase
 {
     public Material ReferencedMaterial
     {
@@ -39,6 +46,6 @@ public class DataNode : DataNodeBase
             false), 
             Option<DataNodeBase>.None);
     }
-
-    
 }
+
+

@@ -4,9 +4,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using DTTUnityCommon.Functional;
+using DTTUnityCore.Functional;
 
-namespace DTTUnityCommon.DataStructs
+namespace DTTUnityCore.DataStructs
 {
 
     [Serializable]
@@ -14,6 +14,7 @@ namespace DTTUnityCommon.DataStructs
     {
         [SerializeField] private string _id;
         [SerializeField] private DataNodeBase _header;
+        [SerializeField] private DataNodeBase _parent;
         [SerializeField] private List<DataNodeBase> _nodeList = new List<DataNodeBase>();
 
         [SerializeReference, Atributes.RequireInterface(typeof(IMetaData))]
@@ -24,41 +25,59 @@ namespace DTTUnityCommon.DataStructs
         public string Id
         {
             get => _id;
-            private set => _id = value;
+            set => _id = value;
         }
 
         public DataNodeBase Header { get => _header; set => _header = value; }
 
+        public DataNodeBase Parent { get => _parent; set => _parent = value; }
+
+        public IMetaDataNode<DataNodeBase, IMetaData> Node { get => this; }
+
         [SerializeField]
-        public List<DataNodeBase> Childs { get => _nodeList; set => _nodeList = value; }
+        public List<DataNodeBase> Childs 
+        { get
+            { 
+                if(_nodeList == null)
+                {
+                    _nodeList = new List<DataNodeBase>();
+                }
+                return _nodeList; 
+            }
+            set => _nodeList = value; 
+        }
 
         public IMetaData Data { get => _metaData; set => _metaData = value; }
 
-        public void AddNode(IMetaDataNode<DataNodeBase, IMetaData> newChild)
+        public IMetaDataNode<DataNodeBase, IMetaData> AddNode(IMetaDataNode<DataNodeBase, IMetaData> newChild)
         {
+            if (_nodeList == null)
+            {
+                _nodeList = new List<DataNodeBase>();
+            }
+            newChild.Header = _header;
+            newChild.Parent = this;
+
             _nodeList.Add((DataNodeBase)newChild);
+            return newChild;
         }
 
-        public void AddNode(string newChildName, IMetaData metaData, Option<DataNodeBase> parent)
+        public IMetaDataNode<DataNodeBase, IMetaData> AddNode(string newChildName, IMetaData metaData, Option<DataNodeBase> parent)
         {
-            DataNodeBase newDataNode = (new GameObject()).AddComponent<DataNode>();
-            newDataNode.name = newChildName;
+            DataNodeBase newDataNode = (new GameObject(newChildName)).AddComponent<DataNodeCubeTest>();
             newDataNode.Data = metaData;
-            newDataNode.Header = _header;
 
             newDataNode.transform.parent = parent.Match(some => some, () => this).transform;
-
-            AddNode(newDataNode);
+            return AddNode(newDataNode);
         }
 
-        public void AddNode(IDataNodeBuilder nodeCreator, Option<DataNodeBase> parent)
+        public IMetaDataNode<DataNodeBase, IMetaData> AddNode(IDataNodeBuilder nodeCreator, Option<DataNodeBase> parent)
         {
             DataNodeBase newDataNode = (DataNodeBase)nodeCreator.Create(this);
-            newDataNode.Header = _header;
 
             newDataNode.transform.parent = parent.Match(some => some, () => this).transform;
 
-            AddNode(newDataNode);
+            return AddNode(newDataNode);
         }
 
         public virtual void RemoveNode()
@@ -130,7 +149,7 @@ namespace DTTUnityCommon.DataStructs
         {
             return _id.GetHashCode();
         }
-
+      
         public static bool operator == (DataNodeBase node1, DataNodeBase node2)
         {
             if (((object)node1) == null || ((object)node2) == null)

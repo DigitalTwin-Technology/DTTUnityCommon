@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace DTTUnityCommon.DataStructs
+namespace DTTUnityCore.DataStructs
 {
     [Serializable]
     public class MetaDataPrimitiveMesh : MetaDataName

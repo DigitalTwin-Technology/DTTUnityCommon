@@ -3,7 +3,7 @@
 
 using UnityEngine;
 
-namespace DTTUnityCommon.Atributes
+namespace DTTUnityCore.Atributes
 {
     /// <summary>
     /// Specify a required interface type for the field

@@ -1,6 +1,7 @@
-﻿using System;
+﻿// Copyright (c) 2023  DigitalTwin Technology GmbH
+// https://www.digitaltwin.technology/
 
-namespace DTTUnityCommon.DataStructs
+namespace DTTUnityCore.DataStructs
 {
     public interface IMetaData
     {

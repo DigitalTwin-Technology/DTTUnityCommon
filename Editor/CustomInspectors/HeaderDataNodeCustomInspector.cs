@@ -3,8 +3,8 @@
 
 using UnityEditor;
 using UnityEngine;
-using DTTUnityCommon.DataStructs;
-using DTTUnityCommon.Functional;
+using DTTUnityCore.DataStructs;
+using DTTUnityCore.Functional;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 [CustomEditor(typeof(HeaderDataNode))]
@@ -58,7 +58,7 @@ public class HeaderDataNodeCustomInspector : Editor
         EditorGUILayout.Space();
 
 
-        EditorGUILayout.ObjectField("Header", _target.Header, typeof(DataNode), true);
+        EditorGUILayout.ObjectField("Header", _target.Header, typeof(DataNodeCubeTest), true);
         if (Childs_Propierty != null)
         {
             EditorGUILayout.PropertyField(Childs_Propierty);

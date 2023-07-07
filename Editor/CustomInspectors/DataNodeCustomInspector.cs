@@ -3,19 +3,19 @@
 
 using UnityEditor;
 using UnityEngine;
-using DTTUnityCommon.DataStructs;
-using DTTUnityCommon.Functional;
+using DTTUnityCore.DataStructs;
+using DTTUnityCore.Functional;
 
-[CustomEditor(typeof(DataNode))]
+[CustomEditor(typeof(DataNodeCubeTest))]
 public class DataNodeCustomInspector : Editor
 {
-    DataNode _target;
+    DataNodeCubeTest _target;
 
     SerializedProperty Childs_Propierty;
 
     private void OnEnable()
     {
-        _target = (DataNode)target;
+        _target = (DataNodeCubeTest)target;
 
         Childs_Propierty = serializedObject.FindProperty("_nodeList");
     }
@@ -38,7 +38,7 @@ public class DataNodeCustomInspector : Editor
         //}
         EditorGUILayout.Space();
 
-        EditorGUILayout.ObjectField("Header", _target.Header, typeof(DataNode), true);
+        EditorGUILayout.ObjectField("Header", _target.Header, typeof(DataNodeCubeTest), true);
         if (Childs_Propierty != null)
         {
             EditorGUILayout.PropertyField(Childs_Propierty);

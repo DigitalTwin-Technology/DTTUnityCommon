@@ -3,7 +3,7 @@
 
 using UnityEngine;
 
-namespace DTTUnityCommon.DataStructs
+namespace DTTUnityCore.DataStructs
 {
     public class MeshBuilder : IDataNodeBuilder
     {

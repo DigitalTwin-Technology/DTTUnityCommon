@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using DTTUnityCommon.Atributes;
+using DTTUnityCore.Atributes;
 
 /// <summary>
 /// Drawer for the RequireInterface attribute.

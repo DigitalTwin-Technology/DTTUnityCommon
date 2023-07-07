@@ -1,15 +1,22 @@
+// Copyright (c) 2023  DigitalTwin Technology GmbH
+// https://www.digitaltwin.technology/
 
 using System.Collections.Generic;
 using UnityEngine;
-using DTTUnityCommon.Functional;
+using DTTUnityCore.Functional;
 
-namespace DTTUnityCommon.DataStructs
+namespace DTTUnityCore.DataStructs
 {
     public interface IMetaDataNode<NodeType, MetaDataType> : IMetaDataNodeBase where MetaDataType : IMetaData
     {
         NodeType Header { get; set; }
 
+        NodeType Parent { get; set; }
+
+        IMetaDataNode<NodeType, MetaDataType> Node { get; }
+
         List<NodeType> Childs { get; set; }
+
 
         MetaDataType Data { get; set; }
 
@@ -17,21 +24,21 @@ namespace DTTUnityCommon.DataStructs
         /// Add node child node
         /// </summary>
         /// <param name="newChild">New node to add</param>
-        void AddNode(IMetaDataNode<NodeType, MetaDataType> newChild);
+        IMetaDataNode<NodeType, MetaDataType> AddNode(IMetaDataNode<NodeType, MetaDataType> newChild);
 
         /// <summary>
         /// Add a new child node
         /// </summary>
         /// <param name="newDataNode">New child name</param>
         /// <param name="metaData">Meta data fro the new data</param>
-        void AddNode(string newChildName, MetaDataType metaData, Option<NodeType> parent);
+        IMetaDataNode<NodeType, MetaDataType> AddNode(string newChildName, MetaDataType metaData, Option<NodeType> parent);
 
         /// <summary>
         /// Add a new child node
         /// </summary>
         /// <param name="newDataNode">New child name</param>
         /// <param name="metaData">Meta data fro the new data</param>
-        void AddNode(IDataNodeBuilder nodeCreator, Option<DataNodeBase> parent);
+        IMetaDataNode<NodeType, MetaDataType> AddNode(IDataNodeBuilder nodeCreator, Option<DataNodeBase> parent);
 
         /// <summary>
         /// Remove the last child
