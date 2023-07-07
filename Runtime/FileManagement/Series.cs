@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DTTUnityCommon.DataRetrieval
+namespace DTTUnityCore.DataRetrieval
 {
     public class Series
     {

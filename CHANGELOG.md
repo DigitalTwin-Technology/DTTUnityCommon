@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ```
 
 ## [Unreleased]
+## [0.8.5] - 07.07.2023.
+### Fixed
+
+Fix DTTUnityCore namespace errors on Series.cs and Table.cs
 
 ## [0.8.4] - 07.07.2023.
 

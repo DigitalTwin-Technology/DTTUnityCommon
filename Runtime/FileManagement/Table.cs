@@ -6,7 +6,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DTTUnityCommon.DataRetrieval
+namespace DTTUnityCore.DataRetrieval
 {
     public class Table
     {
