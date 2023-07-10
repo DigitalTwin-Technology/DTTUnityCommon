@@ -12,32 +12,45 @@ namespace DTTUnityCore.DataStructs
 
         public IMetaData MetaData { get => _metaDataName; set => _metaDataName = (MetaDataName)value; }
 
+        public CombineRendererBuilder(string parentName, int capacity = 0, int layer = 0)
+        {
+            _materialCombineInstanceDictionary = new Dictionary<Material, List<CombineInstance>>(capacity);
+            _materialCombineInstanceDictionary.TrimExcess();
+
+            _metaDataName = new MetaDataName(parentName);
+            _layer = layer;
+        }
+
         public IMetaDataNode<NodeType, MetaDataType> Create<NodeType, MetaDataType>(IMetaDataNode<NodeType, MetaDataType> parent) where MetaDataType : IMetaData
         {
-            DataNodeBase newDataNode = (new GameObject(_metaDataName.Name)).AddComponent<DataNode>();
+            DataNodeBase combineRendererBuilder = (new GameObject(_metaDataName.Name)).AddComponent<DataNode>();
 
             if (_materialCombineInstanceDictionary != null) 
             {
                 foreach (KeyValuePair<Material, List<CombineInstance>> keyValuePair in _materialCombineInstanceDictionary)
                 {
-                    GameObject combineInstanceGameObject = new GameObject(keyValuePair.Key.name.ToString());
-                    combineInstanceGameObject.transform.parent = newDataNode.transform;
-                    combineInstanceGameObject.layer = _layer;
+                    DataNodeBase combineInstanceNode = (new GameObject(keyValuePair.Key.name)).AddComponent<DataNode>();
+                    combineInstanceNode.transform.parent = combineRendererBuilder.transform;
+                    combineInstanceNode.gameObject.layer = _layer;
 
                     Mesh combinedMesh = new Mesh();
                     combinedMesh.CombineMeshes(keyValuePair.Value.ToArray());
-                    combineInstanceGameObject.AddComponent<MeshFilter>().sharedMesh = combinedMesh;
+                    combineInstanceNode.AddComponent<MeshFilter>().sharedMesh = combinedMesh;
 
-                    combineInstanceGameObject.AddComponent<MeshRenderer>().sharedMaterial = keyValuePair.Key;
+                    combineInstanceNode.AddComponent<MeshRenderer>().sharedMaterial = keyValuePair.Key;
+
+                    combineRendererBuilder.AddNode(combineInstanceNode);
                 }
             }
 
-            return (IMetaDataNode<NodeType, MetaDataType>)newDataNode;
+            return (IMetaDataNode<NodeType, MetaDataType>)combineRendererBuilder;
         }
 
         public void Initialize(int capacity, string name = "Combine Renderers", int layer = 0)
         {
-            _materialCombineInstanceDictionary = new Dictionary<Material, List<CombineInstance>>();
+            _materialCombineInstanceDictionary = new Dictionary<Material, List<CombineInstance>>(capacity);
+            _materialCombineInstanceDictionary.TrimExcess();
+
             _metaDataName = new MetaDataName(name);
             _layer = layer;
         }
@@ -65,9 +78,5 @@ namespace DTTUnityCore.DataStructs
             }
         }
     }
-
-    
-
-   
 }
 

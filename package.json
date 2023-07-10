@@ -1,15 +1,18 @@
 {
-  "name": "com.dtt.commond",
-  "displayName": "DTT Unity Commond Code",
-  "version": "0.8.5",
+  "name": "com.dtt.core",
+  "displayName": "DTT Unity Core",
+  "version": "0.9.5",
   "unity": "2021.3",
-  "description": "DTT Unity Commond Code",
+  "description": "Digital Twin Technology core code library and tools",
   "author": {
-    "name": "Coommnd library tools for Digital Twin Technology",
+    "name": "DTT Unity Core",
     "email": "https://www.digitaltwin.technology/",
     "url": "https://www.digitaltwin.technology/"
   },
   "dependencies": {
     "com.unity.collections": "1.2.4"
  }
+  "upm": {
+    "changelog": "#### Added\n\n* Constructor in CombineRendererBuilder\n\n### Changed\n\n* Update Package.json "
+  },
 }
