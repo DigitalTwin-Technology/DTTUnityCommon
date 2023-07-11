@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ```
 
 ## [Unreleased]
+## [0.10.5] - 11.07.2023.
+
+### Added
+Add ICombineRendererBuilder interface
+ 
+### Changed
+Update DataNodeBase.Parent
+
+
 ## [0.9.5] - 10.07.2023.
 
 ### Added

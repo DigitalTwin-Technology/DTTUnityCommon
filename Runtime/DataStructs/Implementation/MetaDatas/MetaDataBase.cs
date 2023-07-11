@@ -18,7 +18,7 @@ namespace DTTUnityCore.DataStructs
             _id = id;
         }
 
-        public string Id { get => _id;  }
+        public string Id { get => _id; set => _id = value; }
     }
 
     [Serializable]

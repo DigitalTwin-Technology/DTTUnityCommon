@@ -30,7 +30,13 @@ namespace DTTUnityCore.DataStructs
 
         public DataNodeBase Header { get => _header; set => _header = value; }
 
-        public DataNodeBase Parent { get => _parent; set => _parent = value; }
+        public DataNodeBase Parent { get => _parent; 
+            set
+            {
+                _parent = value;
+                transform.parent = value.transform;
+            }
+        }
 
         public IMetaDataNode<DataNodeBase, IMetaData> Node { get => this; }
 
@@ -56,7 +62,6 @@ namespace DTTUnityCore.DataStructs
                 _nodeList = new List<DataNodeBase>();
             }
             newChild.Header = _header;
-            newChild.Parent = this;
 
             _nodeList.Add((DataNodeBase)newChild);
             return newChild;

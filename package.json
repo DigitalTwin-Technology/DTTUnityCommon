@@ -1,7 +1,7 @@
 {
   "name": "com.dtt.core",
   "displayName": "DTT Unity Core",
-  "version": "0.9.5",
+  "version": "0.10.5",
   "unity": "2021.3",
   "description": "Digital Twin Technology core code library and tools",
   "author": {
@@ -13,6 +13,6 @@
     "com.unity.collections": "1.2.4"
  }
   "upm": {
-    "changelog": "#### Added\n\n* Constructor in CombineRendererBuilder\n\n### Changed\n\n* Update Package.json "
+    "changelog": "### Added ICombineRendererBuilder interface\n\n### Changed\n\n* Update DataNodeBase.Parent"
   },
 }
